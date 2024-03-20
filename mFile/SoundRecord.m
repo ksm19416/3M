@@ -2,5 +2,5 @@ function result = SoundRecord(time)
 
 recorder = audiorecorder(44100,16,1);
 % record(recorder,time);
-recordblocking(recorder,time); %³ìÀ½ µµÁß¿¡ ½ºÅ©¸³Æ®°¡ ÁøÇàµÇÁö ¾Êµµ·Ï hold
+recordblocking(recorder,time); %ë…¹ìŒ ë„ì¤‘ì— ìŠ¤í¬ë¦½íŠ¸ê°€ ì§„í–‰ë˜ì§€ ì•Šë„ë¡ hold
 result = getaudiodata(recorder);
