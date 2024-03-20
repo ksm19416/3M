@@ -1,23 +1,23 @@
 function frequency = Note2Frequency(LineLocation, NoteLocation)
-%% ÁÙ Ã£¾Æ³¾ ±¸¿ª ¼±Á¤ (¸¶Áö¸· 5°³ ÁÙ À§·Î´Â Àß¶ó³¿)
-%¸¶Áö¸· 5°³ ¼±ÀÇ À§Ä¡ ÃßÃâ
+%% ì¤„ ì°¾ì•„ë‚¼ êµ¬ì—­ ì„ ì • (ë§ˆì§€ë§‰ 5ê°œ ì¤„ ìœ„ë¡œëŠ” ì˜ë¼ëƒ„)
+%ë§ˆì§€ë§‰ 5ê°œ ì„ ì˜ ìœ„ì¹˜ ì¶”ì¶œ
 Last5Line = LineLocation(end-4:end); 
-%À½Ç¥ÀÇ À§Ä¡¸¦ ¸¶Áö¸· ÁÙ·Î ¼±Á¤ÇÏ±â À§ÇÑ ±âÁØ
+%ìŒí‘œì˜ ìœ„ì¹˜ë¥¼ ë§ˆì§€ë§‰ ì¤„ë¡œ ì„ ì •í•˜ê¸° ìœ„í•œ ê¸°ì¤€
 LineCreteria = (LineLocation(end-4) - LineLocation(end-5))/2+LineLocation(end-5); 
-%±âÁØ ³» Á¸ÀçÇÏ´Â À½Ç¥ ÃßÃâ
+%ê¸°ì¤€ ë‚´ ì¡´ì¬í•˜ëŠ” ìŒí‘œ ì¶”ì¶œ
 InnerCreteria = find(NoteLocation(:,2)>LineCreteria);
-NoteInLastLine5 = NoteLocation(InnerCreteria,:); %±âÁØ ³»¿¡ Á¸ÀçÇÏ´Â À½Ç¥ÀÇ À§Ä¡ ÁÂÇ¥ Çà·Ä
-%% À½Ç¥ ÁÖÆÄ¼ö Ã£´Â °úÁ¤
-% ÇÑ À½ ´ç °£°İ Ã£±â
+NoteInLastLine5 = NoteLocation(InnerCreteria,:); %ê¸°ì¤€ ë‚´ì— ì¡´ì¬í•˜ëŠ” ìŒí‘œì˜ ìœ„ì¹˜ ì¢Œí‘œ í–‰ë ¬
+%% ìŒí‘œ ì£¼íŒŒìˆ˜ ì°¾ëŠ” ê³¼ì •
+% í•œ ìŒ ë‹¹ ê°„ê²© ì°¾ê¸°
 Distance2 = abs(sum(Last5Line-Last5Line(5))/10);
 Distance = Distance2/2;
 
-% frequecy°¡ ÃÑ 12°³¶ó°í °¡Á¤ (°¡¿îµµºÎÅÍ ¿ÂÀ½µé¸¸ ºñ±³) 
+% frequecyê°€ ì´ 12ê°œë¼ê³  ê°€ì • (ê°€ìš´ë„ë¶€í„° ì˜¨ìŒë“¤ë§Œ ë¹„êµ) 
 RepNoteY = repmat(NoteInLastLine5(:,2),1,12);
 RepNoteX = repmat(NoteInLastLine5(:,1),1,12);
 TempDistance = Distance*repmat([-2:9],length(NoteInLastLine5(:,2)),1);
 % whereIs = RepNoteY+TempDistance-Last5Line(end);
-%¼±°ú ºñ±³ÇØ¼­ °¢ À½ÀÇ Á¸Àç¿©ºÎ ÆÄ¾Ç(¿­¹øÈ£´Â ¸î¹øÂ° À½ÀÎÁö ³ªÅ¸³¿)
+%ì„ ê³¼ ë¹„êµí•´ì„œ ê° ìŒì˜ ì¡´ì¬ì—¬ë¶€ íŒŒì•…(ì—´ë²ˆí˜¸ëŠ” ëª‡ë²ˆì§¸ ìŒì¸ì§€ ë‚˜íƒ€ëƒ„)
 WhichFrequencyIsON = abs((RepNoteY+TempDistance-Last5Line(end)))<(Distance/2);
 frequency = (RepNoteX.*WhichFrequencyIsON)'>0;
 
