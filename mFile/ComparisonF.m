@@ -1,19 +1,19 @@
 function [result1,result2] = ComparisonF(SoundFromScore,SoundFromRecording,ComparisonNum)
-%% À½ ºñ±³ ¹æ¹ı : ¼¼ °³ÀÇ recordÇà¿¡ ÇÏ³ªÀÇ sound¿Í ÀÏÄ¡¿©ºÎ¸¦ ºñ±³
-% ¿ì¼± record¸¦ ¼¼°³ÀÇ Çà°ú ºñ±³ÇÒ ¼ö ÀÖ°Ô sound¿Í record¸¦ º¹Á¦
+%% ìŒ ë¹„êµ ë°©ë²• : ì„¸ ê°œì˜ recordí–‰ì— í•˜ë‚˜ì˜ soundì™€ ì¼ì¹˜ì—¬ë¶€ë¥¼ ë¹„êµ
+% ìš°ì„  recordë¥¼ ì„¸ê°œì˜ í–‰ê³¼ ë¹„êµí•  ìˆ˜ ìˆê²Œ soundì™€ recordë¥¼ ë³µì œ
 if sum(SoundFromRecording(:,end))~=0
     if ComparisonNum(1) == 0
-    TempScore = repmat(SoundFromScore(:,ComparisonNum(1)+1),1,3);%¾Çº¸¿¡¼­ n¹øÂ°À½À» ºñ±³
+    TempScore = repmat(SoundFromScore(:,ComparisonNum(1)+1),1,3);%ì•…ë³´ì—ì„œ në²ˆì§¸ìŒì„ ë¹„êµ
     TempSound = SoundFromRecording(:,end-2:end);
     IsCorrect = (sum(TempScore == TempSound)>=11);
     else 
     TempScore = repmat(SoundFromScore(:,ComparisonNum(1)+1),1,3);
     TempScore = [TempScore ; repmat(SoundFromScore(:,ComparisonNum(1)),1,3)];
     TempSound = repmat(SoundFromRecording(:,end-2:end),2,1);
-    IsCorrect = (sum(TempScore == TempSound)>=22); % 11°³ ÀÌ»ó ÀÏÄ¡ÇÏ´ÂÁö È®ÀÎ
+    IsCorrect = (sum(TempScore == TempSound)>=22); % 11ê°œ ì´ìƒ ì¼ì¹˜í•˜ëŠ”ì§€ í™•ì¸
     end
-result1 = sum(IsCorrect); % ÀÏÄ¡ÇÏ´Â °¹¼ö ¹İÈ¯
-result2 = (ComparisonNum(2)+1); % À½ÀÌ ¿¬ÁÖµÈ °ÍÀ¸·Î ÆÄ¾ÇµÇ¸é Ä«¿îÆ®
+result1 = sum(IsCorrect); % ì¼ì¹˜í•˜ëŠ” ê°¯ìˆ˜ ë°˜í™˜
+result2 = (ComparisonNum(2)+1); % ìŒì´ ì—°ì£¼ëœ ê²ƒìœ¼ë¡œ íŒŒì•…ë˜ë©´ ì¹´ìš´íŠ¸
 else
 result1 = 0 ;
 result2 = 0;
