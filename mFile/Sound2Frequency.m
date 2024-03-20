@@ -1,11 +1,11 @@
 function result = Sound2Frequency(record)
-Frequency = abs(fft(record)/length(record)); %ÁÖÆÄ¼öº° À½¾ĞÀÇ Å©±â¸¸ ÃßÃâ
-% ÄÓ·¹º¹¼Ò¼ö·Î ÀÎÇÑ ´ëÄªºÎºĞ ÇÕÀ¸·Î ¿¬»ê
+Frequency = abs(fft(record)/length(record)); %ì£¼íŒŒìˆ˜ë³„ ìŒì••ì˜ í¬ê¸°ë§Œ ì¶”ì¶œ
+% ì¼¤ë ˆë³µì†Œìˆ˜ë¡œ ì¸í•œ ëŒ€ì¹­ë¶€ë¶„ í•©ìœ¼ë¡œ ì—°ì‚°
 Frequency2 = Frequency(1:fix(end/2)+1); 
 Frequency2(2:end-1) = 2*Frequency2(2:end-1);
 F = 44100*[0:length(Frequency)/2]/length(Frequency);
-temp = F(find(Frequency2>max(Frequency2)*0.65));% ÀÓ°èÄ¡ ÀÌ»óÀ¸·Î Å« ±âº» ÁÖÆÄ¼ö¸¸ »Ì¾Æ³¿
-% ¾òÀº ÁÖÆÄ¼ö°¡ ¾î´À À½¿¡ ÀÏÄ¡ÇÏ´ÂÁö 12°³¿¡ À½¿¡ ´ëÇØ check
+temp = F(find(Frequency2>max(Frequency2)*0.65));% ì„ê³„ì¹˜ ì´ìƒìœ¼ë¡œ í° ê¸°ë³¸ ì£¼íŒŒìˆ˜ë§Œ ë½‘ì•„ëƒ„
+% ì–»ì€ ì£¼íŒŒìˆ˜ê°€ ì–´ëŠ ìŒì— ì¼ì¹˜í•˜ëŠ”ì§€ 12ê°œì— ìŒì— ëŒ€í•´ check
 tempresult = zeros(length(temp),12) ;
     for k=1:length(temp)
     reptemp = repmat(temp(k),1,12);
